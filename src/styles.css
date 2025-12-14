@@ -1,0 +1,82 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+    --color-background: #000000;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #aaaaaa;
+    --color-accent: #e6a8b0;
+    --font-family-primary: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --header-height: 70px; 
+}
+
+/* --- CONFIGURACIÓN CRÍTICA --- */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    font-family: var(--font-family-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* QUITAMOS EL FLEXBOX DE AQUÍ para dárselo a app-root */
+}
+
+/* --- CLAVE: EL CONTENEDOR PRINCIPAL REAL --- */
+app-root {
+    display: flex;
+    flex-direction: column;
+    /* Usamos min-height 100vh para asegurar que cubra toda la ventana */
+    min-height: 100vh; 
+    width: 100%;
+}
+
+/* --- REGLA PARA EMPUJAR EL FOOTER --- */
+main { 
+    /* Esta regla hace que el main crezca y ocupe todo el espacio vacío */
+    flex: 1; 
+    
+    /* Compensación del Header Fijo */
+    /* Asegúrate de que tu componente header tenga position: fixed si usas esto */
+    padding-top: var(--header-height); 
+    
+    /* Opcional: Centrar contenido si es necesario */
+    width: 100%;
+    display: block; 
+}
+
+/* --- ESTILOS BASE --- */
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 3.5rem;
+    letter-spacing: -1px;
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--color-text-secondary);
+}
+
+p {
+    color: var(--color-text-secondary);
+}

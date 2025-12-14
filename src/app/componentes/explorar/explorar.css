@@ -1,0 +1,150 @@
+/* --- CONFIGURACIÓN GENERAL --- */
+.contenedorPrincipal {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #fff;
+  text-align: center;
+  background-color: #000;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #ffcdd2;
+  font-weight: 700;
+}
+
+/* --- TARJETAS --- */
+.animeRandom,
+.animeRandomVista {
+  background-color: #111;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 3rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.animeRandom h2,
+.animeRandomVista h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* --- BOTÓN SUPERIOR (SORPRÉNDEME) --- */
+.botonBusqueda {
+  padding: 18px 60px; /* ¡Botones Grandes! */
+  font-size: 1.3rem;
+  border-radius: 50px;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.botonBusqueda:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+button[type="submit"] {
+  background: linear-gradient(135deg, #f066b6 0%, #ca580c 100%);
+  color: white;
+}
+
+button[type="button"] {
+  background-color: transparent;
+  border: 2px solid #555;
+  color: #ccc;
+}
+button[type="button"]:hover {
+  border-color: #fff;
+  color: white;
+  background-color: #222;
+}
+
+
+/* --- DETALLES --- */
+.animeRandomDetalles {
+  display: flex;
+  gap: 2rem;
+  text-align: left;
+}
+
+.animeRandomImagen {
+  width: 200px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.animeRandomInfo h3 {
+  font-size: 1.8rem;
+  color: #fca5a5;
+}
+
+.animeRandomInfo p {
+  color: #9ca3af;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* --- BOTONES DE ABAJO (TODOS ROSA) --- */
+.animeRandomBotones {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.botonRandom2 {
+  background-color: #f4a6b4; /* ROSA */
+  color: #000;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 80px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.botonRandom3 {
+  background-color: #83d4ac; /* ROSA */
+  color: #000;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 80px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.botonRandom3:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+}
+
+.botonRandom2:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 600px) {
+  .animeRandomDetalles {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .animeRandomImagen {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+  }
+}

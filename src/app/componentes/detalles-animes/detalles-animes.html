@@ -1,0 +1,107 @@
+<div class="detalles-container">
+  <!-- Cargando -->
+  <div *ngIf="cargando" class="loading">
+    <p>Cargando información del anime...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error && !cargando" class="error">
+    <p>{{ error }}</p>
+    <button (click)="router.navigate(['/'])" class="back-button">Volver al inicio</button>
+  </div>
+
+  <!-- Contenido -->
+  <div *ngIf="!cargando && !error && anime" class="anime-details">
+    <button (click)="router.navigate(['/'])" class="back-button">← Volver</button>
+
+    <div class="anime-header">
+      <div class="anime-image">
+        <img [src]="obtenerUrlImagen()" [alt]="anime.title" />
+      </div>
+      <div class="anime-info">
+        <h1>{{ anime.title }}</h1>
+        <p *ngIf="anime.title_japanese" class="japanese-title">{{ anime.title_japanese }}</p>
+        
+        <div class="metadata">
+          <p><strong>Episodios:</strong> {{ anime.episodes || 'Info no disponible' }}</p>
+          <p><strong>Estado:</strong> {{ anime.status }}</p>
+          <p><strong>Puntuación:</strong> {{ anime.score || 'Info no disponible' }}</p>
+          <p><strong>Ranking:</strong> #{{ anime.rank || 'Info no disponible' }}</p>
+          <p><strong>Año:</strong> {{ anime.year || 'Info no disponible' }}</p>
+          <p><strong>Géneros:</strong> {{ obtenerGeneros() }}</p>
+        </div>
+
+
+
+        <div class="actions">
+          <button *ngIf="!animeEnLista" (click)="anadirALista()" class="add-button">
+            Añadir a Mi Lista
+          </button>
+          
+          <div *ngIf="animeEnLista" class="lista-actions">
+            <select [(ngModel)]="animeEnLista.status" (change)="actualizarEstado(animeEnLista!.status)"class="status-select">
+              <option value="planned">Pendiente</option>
+              <option value="watching">Viendo</option>
+              <option value="completed">Completado</option>
+              <option value="dropped">Ni con tu tiempo</option>
+            </select>
+            <button (click)="alternarFavorito()" [class.favorite]="animeEnLista.isFavorite"class="favorite-button">
+              {{ animeEnLista.isFavorite ? 'Favorito' : 'Marcar como favorito' }}
+            </button>
+            <button (click)="eliminarDeLista()" class="remove-button">
+              Eliminar de lista
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="anime-content">
+      <div class="synopsis">
+        <h2>Sinopsis</h2>
+        <p>{{ anime.synopsis || 'No hay sinopsis disponible.' }}</p>
+      </div>
+
+      <div class="episodes-section">
+        <h2 (click)="mostrarEpisodios = !mostrarEpisodios" class="toggle-section">
+          Episodios ({{ episodios.length }}) 
+          <span>{{ mostrarEpisodios ? "Cerrar" : "Abrir" }}</span>
+        </h2>
+        <div *ngIf="mostrarEpisodios" class="episodes-list">
+          <div *ngFor="let episodio of episodios.slice(0, 20)" class="episode-item"> 
+            <p>
+              <strong>Episodio {{ episodio.mal_id }}:</strong> {{ episodio.title }}
+            </p>
+            <p class="episode-date">
+              Emitido: {{ episodio.aired || 'Info no disponible' }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-section">
+        <h2 (click)="mostrarResenas = !mostrarResenas" class="toggle-section">
+          Reseñas ({{ resenas.length }}) 
+          <span>{{ mostrarResenas ? "Cerrar" : "Abrir" }}</span>
+        </h2>
+        <div *ngIf="mostrarResenas" class="reviews-list">
+          <div *ngFor="let resena of resenas.slice(0, 5)" class="review-item">
+            <div class="review-header">
+              <img 
+                [src]="resena.user?.images?.webp?.image_url || ''" 
+                [alt]="resena.user?.username"
+                class="review-avatar" />
+              <div>
+                <p>
+                  <strong>{{ resena.user?.username }}</strong>
+                </p>
+                <p>{{ resena.score }}/10</p>
+              </div>
+            </div>
+            <p class="review-text">{{ resena.review }}</p>
+            <p class="review-date">{{ resena.date }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+

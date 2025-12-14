@@ -1,0 +1,23 @@
+<div class="anime-list-section">
+  <div class="search-bar">
+    <input type="text" [(ngModel)]="palabraBusqueda" placeholder="Buscar animes en la lista..." />
+  </div>
+
+  <div class="anime-cards-grid">
+    <div *ngFor="let anime of animesFiltrados" class="anime-card" [routerLink]="['/anime', anime.mal_id]">
+      <div class="card-image">
+        <img [src]="anime.image_url" [alt]="anime.title" />
+      </div>
+      <div class="card-info">
+        <h3>{{ anime.title }}</h3>
+        <p class="status">{{ etiquetasEstado[anime.status] || anime.status | uppercase }}</p>
+        <span class="favorite-icon" *ngIf="anime.isFavorite">❤️</span>
+        <p class="score" *ngIf="anime.score">Nota: {{ anime.score || 'Info no disponible' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="animes.length === 0" class="no-results">
+    No tienes animes en la categoría "{{ filtroActivo }}".
+  </div>
+</div>

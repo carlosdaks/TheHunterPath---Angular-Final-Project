@@ -1,0 +1,84 @@
+<div class="contenedorBusquedaPrincipal">
+  <h1>Buscador Avanzado</h1>
+  
+  <form [formGroup]="formularioBusqueda" (ngSubmit)="buscarAnime()" class="formularioBusqueda">
+    <div class="form-row">
+      <label>
+        Nombre:
+        <input type="text" formControlName="textoBusqueda" placeholder="Nombre del anime" />
+      </label>
+    </div>
+
+    <div class="busqueda">
+      <label>
+        Tipo:
+        <select formControlName="tipoDeAnime">
+          <option value="">Todos</option>
+          <option value="tv">TV</option>
+          <option value="movie">Película</option>
+          <option value="ova">OVA</option>
+          <option value="special">Especial</option>
+        </select>
+      </label>
+
+      <label>
+        Estado:
+        <select formControlName="estado">
+          <option value="">Todos</option>
+          <option value="airing">En emisión</option>
+          <option value="complete">Completado</option>
+          <option value="upcoming">Próximamente</option>
+        </select>
+      </label>
+
+      <label>
+        Clasificación:
+        <select formControlName="rating">
+          <option value="">Todas</option>
+          <option value="g">G - Todos</option>
+          <option value="pg">PG - Niños</option>
+          <option value="pg13">PG-13 - Adolescentes</option>
+          <option value="r17">17+</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="busqueda">
+      <label>
+        Ordenar por:
+        <select formControlName="orden">
+          <option value="score">Puntuación</option>
+          <option value="popularity">Popularidad</option>
+          <option value="title">Título</option>
+          <option value="episodes">Episodios</option>
+        </select>
+      </label>
+
+      <label>
+        Orden:
+        <select formControlName="sort">
+          <option value="desc">Descendente</option>
+          <option value="asc">Ascendente</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="botonesFormulario">
+      <button type="submit" [disabled]="cargando" class="botonBusqueda">Buscar</button>
+      <button type="button" (click)="resetearFormulario()" class="botonBusqueda2">Restablecer</button>
+    </div>
+  </form>
+
+  <div *ngIf="cargando" class="loading">Buscando...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="sinResultados && !cargando" class="no-results">No se encontraron resultados.</div>
+
+  <div *ngIf="!cargando && !error && !sinResultados && resultados.length > 0" class="animeBusqueda">
+    <div *ngFor="let anime of resultados" class="animeClaseBusqueda" [routerLink]="['/anime', anime.mal_id]">
+      <img [src]="obtenerUrlImagen(anime)" [alt]="anime.title" />
+      <h3>{{ anime.title }}</h3>
+      <p *ngIf="anime.score"><strong>Nota: </strong>{{ anime.score || 'Info no disponible' }}</p>
+    </div>
+  </div>
+</div>
+

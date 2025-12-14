@@ -1,0 +1,25 @@
+footer {
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    padding: 2rem;
+    border-top: 2px solid #2a2a2a;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+footer p {
+    margin: 0.5rem 0;
+    color: var(--color-text-secondary);
+}
+
+footer a {
+    margin: 0 1rem;
+    color: var(--color-accent);
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+footer a:hover {
+    color: var(--color-text-primary);
+    transform: translateY(-2px);
+}

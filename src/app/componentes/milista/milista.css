@@ -1,0 +1,31 @@
+.contenedorLista {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+  min-height: calc(100vh - 200px);
+}
+
+@media (max-width: 1024px) {
+  .contenedorLista {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+  
+  .barraLateral {
+    order: 2;
+  }
+  
+  .listaAnime {
+    order: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .contenedorLista {
+    padding: 1rem;
+    gap: 1rem;
+  }
+}

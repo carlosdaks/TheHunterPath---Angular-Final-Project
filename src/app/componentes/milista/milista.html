@@ -1,0 +1,21 @@
+<div class="contenedorLista">
+    
+    <app-datos-lista-anime
+        class="barraLateral"
+        
+        [contadores]="contadoresEstado"
+        [filtroActivo]="filtroActivo"
+
+        (filtroSeleccionado)="seleccionarFiltro($event)"
+    ></app-datos-lista-anime>
+
+    <app-lista-animes
+        class="listaAnimes"
+        
+        [animes]="listaFiltrada"
+        [filtroActivo]="filtroActivo"
+        [opcionesFiltro]="opcionesFiltro"
+
+        (filtroSeleccionado)="seleccionarFiltro($event)"
+    ></app-lista-animes>
+</div>

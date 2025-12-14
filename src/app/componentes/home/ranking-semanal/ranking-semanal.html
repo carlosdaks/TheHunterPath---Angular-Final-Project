@@ -1,0 +1,27 @@
+<div class="ranking-container">
+  <h2>Ranking Semanal</h2>
+
+  <div *ngIf="isLoading" class="loading">
+    Cargando animes...
+  </div>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!isLoading && !error && animesRankingSemanal.length > 0" class="anime-list">
+    <div *ngFor="let anime of animesRankingSemanal; let i = index" class="anime-item"[routerLink]="['/anime', anime.mal_id]">
+      <span class="rank-number">#{{ i + 1 }}</span>
+      <img [src]="anime.images.webp.image_url" [alt]="anime.title" class="anime-image">
+      <div class="anime-info">
+        <h3>{{ anime.title }}</h3>
+        <p>Puntuación: {{ anime.score || 'Info no disponible' }}</p>
+        <p>Episodios: {{ anime.episodes || 'Info no disponible' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && !error && animesRankingSemanal.length === 0" class="no-data">
+    No se encontraron animes en el ranking actual.
+  </div>
+</div>

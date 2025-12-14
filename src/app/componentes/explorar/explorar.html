@@ -1,0 +1,30 @@
+<div class="contenedorPrincipal">
+  <h1>Explorar</h1>
+
+  <div class="animeRandom">
+    <h2>¿No sabes qué anime ver? ¡Prueba suerte!</h2>
+    <button type="button" (click)="sorprendeme()" [disabled]="cargando" class="botonBusqueda">
+      Anime aleatorio
+    </button>
+  </div>
+
+  <div *ngIf="animeAleatorio" class="animeRandomVista" >
+    <h2>Anime Aleatorio para ti:</h2>
+    <div class="animeRandomDetalles">
+      <img [src]="obtenerUrlImagen(animeAleatorio)" [alt]="animeAleatorio.title" class="animeRandomImagen" />
+      <div class="animeRandomInfo">
+        <h3>{{ animeAleatorio.title }}</h3>
+        <p *ngIf="animeAleatorio.score">Puntuación: {{ animeAleatorio.score || 'Info no disponible' }}</p>
+        <p *ngIf="animeAleatorio.synopsis"><strong>Descripción: </strong>{{ animeAleatorio.synopsis }}</p>
+        <div class="animeRandomBotones">
+          <button type="button" (click)="anadirALista()" class="botonRandom2">Añadir a mi lista</button>
+          <button type="button" (click)="probarOtro()" class="botonRandom3" >Probar otro</button>
+          <button type="button"  class="botonRandom3" [routerLink]="['/anime', animeAleatorio.mal_id]">Ver más detalles</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="cargando" class="loading">Buscando...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+</div>

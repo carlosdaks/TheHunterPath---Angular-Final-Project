@@ -1,0 +1,36 @@
+<div class="carrusel-wrapper" *ngIf="!isLoading && !error && animesDestacados.length > 0">
+    
+  <button class="carousel-button prev" (click)="animeAnterior()">&#10094;</button>
+  <div class="destacado-container">
+    <ng-container *ngIf="animeDestacadoActual() as anime">
+      <div class="content-wrapper">
+        <div class="anime-info-box">
+          <p class="section-title">Animes Destacados</p>
+          <span class="rank-number">#{{ anime.rank }}</span>
+          <h1>{{ anime.title }}</h1>
+          <p class="synopsis">{{ anime.synopsis | slice : 0 : 250 }}...</p>
+          <div class="metadata">
+            <p><b>Año:</b> {{ anime.aired?.prop?.from?.year || 'N/A' }}</p>
+            <p><b>Estado:</b> {{ anime.status }}</p>
+            <p><b>Episodios:</b> {{ anime.episodes || '?' }}</p>
+          </div>
+          <div class="buttons">
+            <button class="detail-button" [routerLink]="['/anime', anime.mal_id]">
+              Ver Detalles
+            </button>
+          </div>
+          <div class="genres">
+            <span *ngFor="let genre of anime.genres" class="genre-tag">
+              {{ genre.name }}
+            </span>
+          </div>
+        </div>
+        <div class="anime-image-right">
+          <img [src]="anime.images.webp.large_image_url" [alt]="anime.title" />
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <button class="carousel-button next" (click)="siguienteAnime()">&#10095;</button>
+</div>

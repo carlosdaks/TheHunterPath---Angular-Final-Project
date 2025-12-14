@@ -1,0 +1,197 @@
+/* --- 1. CONTENEDOR PRINCIPAL --- */
+.contenedorBusquedaPrincipal {
+  max-width: 1200px; /* Ancho generoso para que quepan muchas tarjetas */
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #fff;
+  min-height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #ffcdd2;
+  font-weight: 700;
+}
+
+/* --- 2. FORMULARIO --- */
+.formularioBusqueda {
+  background-color: #111;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 3rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.form-row, .busqueda {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #ccc;
+  font-weight: 600;
+  flex: 1;
+  min-width: 180px; /* Un poco más compactos los inputs */
+}
+
+input, select {
+  background-color: #222;
+  border: 1px solid #444;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+  width: 100%; /* Asegura que llenen su hueco */
+}
+
+input:focus, select:focus {
+  border-color: #f06595;
+}
+
+/* --- 3. BOTONES GRANDES (Mantenemos esto igual) --- */
+.botonesFormulario {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.botonBusqueda {
+  padding: 18px 60px; /* ¡Botones Grandes! */
+  font-size: 1.3rem;
+  border-radius: 50px;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+    background: linear-gradient(135deg, #f066b6 0%, #ca580c 100%);
+  color: white;
+}
+.botonBusqueda2 {
+  padding: 18px 60px; /* ¡Botones Grandes! */
+  font-size: 1.3rem;
+  border-radius: 50px;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+    background: linear-gradient(135deg, #853865 0%, #743003 100%);
+  color: white;
+}
+.botonBusqueda2:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.botonBusqueda:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+button[type="submit"] {
+  background: linear-gradient(135deg, #f066b6 0%, #ca580c 100%);
+  color: white;
+}
+
+
+/* --- 4. RESULTADOS (Grid Fluido y Compacto) --- */
+.animeBusqueda {
+  display: grid;
+  /* CAMBIO CLAVE:
+     Antes era 300px (muy ancho). 
+     Ahora es 190px. Esto permite que entren 5 o 6 por fila.
+     "auto-fill" se encarga de rellenar todo el hueco disponible. */
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); 
+  gap: 25px; /* Menos espacio entre ellas para que quede compacto */
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animeClaseBusqueda {
+  background-color: #1e1e24;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.animeClaseBusqueda:hover {
+  transform: translateY(-8px);
+  border-color: #f06595;
+  z-index: 2; /* Para que sobresalga si se solapan sombras */
+}
+
+/* Imagen Ajustada */
+.animeClaseBusqueda img {
+  width: 100%;
+  /* CAMBIO CLAVE:
+     Antes era 400px. Ahora 280px.
+     Se ven bien pero ocupan menos pantalla vertical. */
+  height: 280px; 
+  object-fit: cover;
+}
+
+.animeClaseBusqueda h3 {
+  padding: 12px 12px 5px 12px;
+  margin: 0;
+  font-size: 1rem; /* Letra un pelín más pequeña para que encaje */
+  color: #fff;
+  /* Cortar título largo */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.3;
+}
+
+.animeClaseBusqueda p {
+  padding: 0 12px 12px 12px;
+  color: #fca5a5;
+  font-weight: bold;
+  margin-top: 5px;
+  font-size: 0.9rem;
+}
+
+/* --- ESTADOS --- */
+.loading, .error, .no-results {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 50px;
+  color: #888;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 600px) {
+  /* En móviles se adapta solo, pero ajustamos los botones */
+  .botonBusqueda {
+    width: 100%;
+    padding: 15px;
+  }
+  
+  .formularioBusqueda {
+    padding: 1.5rem;
+  }
+  
+  /* En móvil, las imágenes pueden ser un poco más pequeñas */
+  .animeClaseBusqueda img {
+    height: 240px;
+  }
+}

@@ -1,0 +1,17 @@
+<div class="sidebar-filters">
+    <h2>Mi Lista de Animes</h2>
+    
+    <div class="status-counters">
+        <div 
+            *ngFor="let item of contadores" 
+            class="counter-item"
+            
+            [class.active]="item.id === filtroActivo"
+            
+            (click)="filtroClick(item.id)">
+            
+            <span class="status-name">{{ item.name }}</span>
+            <span class="status-count">{{ item.count }}</span>
+        </div>
+    </div>
+</div>
